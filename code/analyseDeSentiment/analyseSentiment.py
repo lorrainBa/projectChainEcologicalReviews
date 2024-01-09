@@ -5,7 +5,7 @@ def analyze_sentiment(comment):
     blob = TextBlob(comment)
     return blob.sentiment.polarity
 
-
+ 
 
 def rate_site(comments):
     # Initialize the sum of polarities
