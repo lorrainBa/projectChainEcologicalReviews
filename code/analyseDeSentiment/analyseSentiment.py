@@ -1,6 +1,7 @@
 from textblob import TextBlob
+from saveGraph import createBarChart
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 def analyze_sentiment(comment):
     # Use TextBlob for sentiment analysis
@@ -26,22 +27,6 @@ def rate_site(comments):
 
     return rating
 
-
-
-
-
-def createBarChart(site_ratings):
-    # Create a bar chart
-    sites = list(site_ratings.keys())
-    ratings = list(site_ratings.values())
-
-    plt.bar(sites, ratings, color='blue')
-    plt.xlabel('Restaurant Sites')
-    plt.ylabel('Ratings')
-    plt.title('Overall Ratings for Each Site')
-
-    # Save the image
-    plt.savefig('output/graph/scoreBarChart.png')
 
 
 
