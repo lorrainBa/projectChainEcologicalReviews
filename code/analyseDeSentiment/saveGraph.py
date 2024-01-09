@@ -45,5 +45,3 @@ def createBarChart(site_ratings):
     # Save the image
     plt.savefig('output/graph/scoreBarChart.png', bbox_inches='tight')
 
-    # Show the plot (optional)
-    plt.show()
