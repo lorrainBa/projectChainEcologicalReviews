@@ -1,0 +1,9 @@
+google: Great food and friendly service!
+google: The atmosphere is fantastic.
+google: I didn't like the menu options.
+tripAdvisor: Amazing experience, will come again!
+tripAdvisor: Service was a bit slow.
+tripAdvisor: The desserts were delicious.
+laFourchette: Good variety of dishes.
+laFourchette: The staff was knowledgeable about the menu.
+laFourchette: Disappointed with the portion size.

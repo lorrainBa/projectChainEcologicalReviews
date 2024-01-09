@@ -1,54 +1,50 @@
 from textblob import TextBlob
 
-def analyse_sentiment(commentaire):
-    # Utilisation de TextBlob pour l'analyse de sentiment
-    blob = TextBlob(commentaire)
+def analyze_sentiment(comment):
+    # Use TextBlob for sentiment analysis
+    blob = TextBlob(comment)
     return blob.sentiment.polarity
 
-def noter_site(commentaires):
-    # Initialiser la somme des polarités
-    somme_polarites = 0.0
 
-    # Analyser chaque commentaire
-    for commentaire in commentaires:
-        polarite = analyse_sentiment(commentaire)
-        somme_polarites += polarite
 
-    # Calculer la moyenne des polarités
-    moyenne_polarites = somme_polarites / len(commentaires)
+def rate_site(comments):
+    # Initialize the sum of polarities
+    sum_polarities = 0.0
 
-    # Convertir la polarité moyenne en note de 0 à 5
-    note = (moyenne_polarites + 1) * 2.5
+    # Analyze each comment
+    for comment in comments:
+        polarity = analyze_sentiment(comment)
+        sum_polarities += polarity
 
-    return note
+    # Calculate the average polarities
+    average_polarities = sum_polarities / len(comments)
 
-def noter_global(restaurant):
-    # Initialiser la somme des notes des sites
-    somme_notes_sites = 0.0
+    # Convert the average polarity to a rating from 0 to 5
+    rating = (average_polarities + 1) * 2.5
 
-    # Analyser chaque site
-    for site, commentaires in restaurant.items():
-        note_site = noter_site(commentaires)
-        somme_notes_sites += note_site
-        print(f"Site {site}: Note {note_site:.2f}")
+    return rating
 
-    # Calculer la moyenne des notes des sites
-    moyenne_notes_sites = somme_notes_sites / len(restaurant)
 
-    print(f"\nNote Globale du Restaurant: {moyenne_notes_sites:.2f}")
 
-# Charger les commentaires depuis le fichier
-def charger_commentaires(fichier):
-    restaurant = {}
-    with open(fichier, 'r', encoding='utf-8') as file:
-        for ligne in file:
-            site, commentaire = ligne.strip().split(": ", 1)
-            if site not in restaurant:
-                restaurant[site] = []
-            restaurant[site].append(commentaire)
-    return restaurant
+def rate_global(restaurant):
+    # Initialize the sum of site ratings and a dictionary to store individual site ratings
+    sum_site_ratings = 0.0
+    site_ratings = {}
 
-# Exemple d'utilisation
-nom_fichier = "nomRestaurant.txt"
-commentaires_restaurant = charger_commentaires(nom_fichier)
-noter_global(commentaires_restaurant)
+    # Analyze each site
+    for site, comments in restaurant.items():
+        site_rating = rate_site(comments)
+        sum_site_ratings += site_rating
+        site_ratings[site] = site_rating
+        print(f"Site {site}: Rating {site_rating:.2f}")
+
+    # Calculate the average site ratings
+    average_site_ratings = sum_site_ratings / len(restaurant)
+
+    print(f"\nOverall Restaurant Rating: {average_site_ratings:.2f}")
+
+    return site_ratings
+
+
+
+
