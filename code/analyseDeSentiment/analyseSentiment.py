@@ -1,7 +1,7 @@
 from textblob import TextBlob
 from saveGraph import createBarChart
 import matplotlib.pyplot as plt
-import numpy as np
+import os 
 
 def analyze_sentiment(comment):
     # Use TextBlob for sentiment analysis
@@ -33,25 +33,49 @@ def rate_site(comments):
 
 
 
-def rate_global(restaurant):
+def rate_global(dictionarryOfCategories):
     # Initialize the sum of site ratings and a dictionary to store individual site ratings
-    sum_site_ratings = 0.0
-    site_ratings = {}
+    finalScore = 0.0
+    categoryScore = {}
+    siteCategoryScore = {}
+    
+    # Analyze each category.txt
+    for category in dictionarryOfCategories:
+        #Each site will have a mean score for the category
+        sum_site_ratings = 0.0
+        
+        for site, comments in dictionarryOfCategories[category].items():
+            site_rating = rate_site(comments)
+            sum_site_ratings += site_rating
 
-    # Analyze each site
-    for site, comments in restaurant.items():
-        site_rating = rate_site(comments)
-        sum_site_ratings += site_rating
-        site_ratings[site] = site_rating
-        print(f"Site {site}: Rating {site_rating:.2f}")
+            print(f"Site {site}: Rating {site_rating:.2f}")
+            
+            #Add the score link to the category of a certain website
+            if site in siteCategoryScore:
+                siteCategoryScore[site][category] = site_rating
 
-    # Calculate the average site ratings
-    average_site_ratings = sum_site_ratings / len(restaurant)
+            else:
+                siteCategoryScore[site] = {}
+                siteCategoryScore[site][category] = site_rating
 
-    print(f"\nOverall Restaurant Rating: {average_site_ratings:.2f}")
+        # Calculate the category ratings
+        average_site_ratings = sum_site_ratings / len(dictionarryOfCategories[category])
 
-    createBarChart(site_ratings)
+        categoryScore[category] = average_site_ratings
+        finalScore += average_site_ratings
+        print(f"\nOverall Restaurant Rating for category {category} is: {average_site_ratings:.2f}\n\n")
+    
+    
+    finalScore = finalScore / len(dictionarryOfCategories)
+    print("Final mean score is",finalScore)
+    print(categoryScore,"-___-")
+    createBarChart(categoryScore,"everyApp")
 
-    return site_ratings
+    for site in siteCategoryScore:
+        print(siteCategoryScore[site],"--")
+        createBarChart(siteCategoryScore[site],site)
+
+
+    return categoryScore
 
 
