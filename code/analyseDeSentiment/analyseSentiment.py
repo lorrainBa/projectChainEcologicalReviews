@@ -69,7 +69,7 @@ def rate_global(dictionarryOfCategories):
     finalScore = finalScore / len(dictionarryOfCategories)
     print("Final mean score is",finalScore)
     print(categoryScore,"-___-")
-    createBarChart(categoryScore,"finalCategory")
+    createBarChart(categoryScore,"everyApp")
 
     for site in siteCategoryScore:
         print(siteCategoryScore[site],"--")
