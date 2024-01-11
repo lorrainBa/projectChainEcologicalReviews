@@ -18,7 +18,7 @@ def color_based_on_rating(rating):
 
 
 
-def createBarChart(site_ratings):
+def createBarChart(site_ratings,name):
     # Sort the sites based on ratings (from low to high)
     sorted_sites = sorted(site_ratings, key=site_ratings.get, reverse=False)
     sorted_ratings = [site_ratings[site] for site in sorted_sites]
@@ -32,8 +32,8 @@ def createBarChart(site_ratings):
 
     # Add labels and title
     plt.xlabel('Ratings')
-    plt.ylabel('Restaurant Sites')
-    plt.title('Overall Ratings for Each Site (Sorted)')
+    plt.ylabel('Category')
+    plt.title('Overall Ratings for Each Category')
 
     # Display rounded ratings on the bars for better clarity
     for i, v in enumerate(sorted_ratings):
@@ -43,5 +43,5 @@ def createBarChart(site_ratings):
     plt.grid(axis='x', linestyle='--', alpha=0.6)
 
     # Save the image
-    plt.savefig('output/graph/scoreBarChart.png', bbox_inches='tight')
+    plt.savefig('output/graph/'+name+'_scoreBarChart.png', bbox_inches='tight')
 
