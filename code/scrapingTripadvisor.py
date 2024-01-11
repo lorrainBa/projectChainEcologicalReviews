@@ -3,7 +3,6 @@
 
 # In[4]:
 
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -38,6 +37,9 @@ def scrape_comments(driver, file):
     
     title_element = soup.find('h1', {'data-test-target': 'top-info-header'})
     restaurant_title = title_element.text.strip()
+    
+    max_runtime_minutes = 1
+    start_time = time.time()
 
     while True:
         cookie_button_clicked = handle_cookies(driver, cookie_button_clicked)
@@ -49,14 +51,19 @@ def scrape_comments(driver, file):
             next_page_button.click()
 
             time.sleep(2)
+            
+            elapsed_time = time.time() - start_time
+
+            if elapsed_time > max_runtime_minutes * 60:
+                print(f"Le temps d'exécution maximum de {max_runtime_minutes} minute(s) est écoulé.")
+                break
 
             soup = get_page_content(driver)
             quotes = soup.find_all(class_="noQuotes")
             comments = soup.find_all(class_="prw_rup prw_reviews_text_summary_hsx")
 
             for quote, comment in zip(quotes, comments):
-                file.write(quote.text + '\n')
-                file.write(comment.text + '\n\n')
+                file.write(restaurant_title + ': ' + quote.text + comment.text + '\n')
 
         except Exception as e:
             break
@@ -66,8 +73,7 @@ def scrape_comments(driver, file):
     comments = soup.find_all(class_="prw_rup prw_reviews_text_summary_hsx")
 
     for quote, comment in zip(quotes, comments):
-        file.write(quote.text + '\n')
-        file.write(comment.text + '\n\n')
+        file.write(restaurant_title + ': ' + quote.text + comment.text + '\n')
 
     return restaurant_title
 
@@ -90,9 +96,9 @@ def process_comments(comments_content, folder_path, patterns, output_file_names)
         output_file_path = os.path.join(folder_path, output_file_name)
         write_matching_comments(matches, output_file_path, comments_content)
 
-def getDataFromRestaurant():
+def getDataFromRestaurant(restaurant_url):
     driver = webdriver.Firefox()
-    driver.get('https://www.tripadvisor.fr/Restaurant_Review-g60763-d424545-Reviews-Ellen_s_Stardust_Diner-New_York_City_New_York.html')
+    driver.get(restaurant_url)
 
     with open('tripAdvisorComments.txt', 'w', encoding='utf-8') as file:
         restaurant_title = scrape_comments(driver, file)
@@ -120,3 +126,5 @@ def getDataFromRestaurant():
 
     process_comments(comments_content, folder_path, patterns, output_file_names)
 
+if __name__ == "__main__":
+    getDataFromRestaurant('https://www.tripadvisor.fr/Restaurant_Review-g60763-d424545-Reviews-Ellen_s_Stardust_Diner-New_York_City_New_York.html')
