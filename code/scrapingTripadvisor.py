@@ -125,6 +125,3 @@ def getDataFromRestaurant(restaurant_url):
         os.makedirs(folder_path)
 
     process_comments(comments_content, folder_path, patterns, output_file_names)
-
-if __name__ == "__main__":
-    getDataFromRestaurant('https://www.tripadvisor.fr/Restaurant_Review-g60763-d424545-Reviews-Ellen_s_Stardust_Diner-New_York_City_New_York.html')
