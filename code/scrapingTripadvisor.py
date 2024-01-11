@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[4]:
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -91,7 +96,7 @@ def process_comments(comments_content, folder_path, patterns, output_file_names)
         output_file_path = os.path.join(folder_path, output_file_name)
         write_matching_comments(matches, output_file_path, comments_content)
 
-def main(restaurant_url):
+def getDataFromRestaurant(restaurant_url):
     driver = webdriver.Firefox()
     driver.get(restaurant_url)
 
