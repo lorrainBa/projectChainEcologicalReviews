@@ -90,7 +90,7 @@ def process_comments(comments_content, folder_path, patterns, output_file_names)
         output_file_path = os.path.join(folder_path, output_file_name)
         write_matching_comments(matches, output_file_path, comments_content)
 
-def main():
+def getDataFromRestaurant():
     driver = webdriver.Firefox()
     driver.get('https://www.tripadvisor.fr/Restaurant_Review-g60763-d424545-Reviews-Ellen_s_Stardust_Diner-New_York_City_New_York.html')
 
@@ -119,13 +119,4 @@ def main():
         os.makedirs(folder_path)
 
     process_comments(comments_content, folder_path, patterns, output_file_names)
-
-if __name__ == "__main__":
-    main()
-
-
-# In[ ]:
-
-
-
 

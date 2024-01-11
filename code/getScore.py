@@ -1,11 +1,11 @@
 from loadFile  import getDictionnaryOfCategoryComments
 from analyseSentiment import rate_global
 import os
-from ..scrapping import tripAdvisorScraping
+from scrapingTripadvisor import getDataFromRestaurant
 
 
 dataPath = "data/"
-
+getDataFromRestaurant()
 #Get the folder to treat
 dossierATraiter = os.listdir(dataPath)
 # Filtrer les dossiers uniquement (ignorer les fichiers)
