@@ -33,7 +33,7 @@ def rate_site(comments):
 
 
 
-def rate_global(dictionarryOfCategories):
+def rate_global(dictionarryOfCategories,file_name):
     # Initialize the sum of site ratings and a dictionary to store individual site ratings
     finalScore = 0.0
     categoryScore = {}
@@ -69,11 +69,17 @@ def rate_global(dictionarryOfCategories):
     finalScore = finalScore / len(dictionarryOfCategories)
     print("Final mean score is",finalScore)
     print(categoryScore,"-___-")
-    createBarChart(categoryScore,"everyApp")
+
+    #Create folder for the output graph
+    if not os.path.exists("output/graph/"+file_name):
+        # Créez le dossier s'il n'existe pas
+        os.makedirs("output/graph/"+file_name)
+
+    createBarChart(categoryScore,"everyApp",file_name)
 
     for site in siteCategoryScore:
         print(siteCategoryScore[site],"--")
-        createBarChart(siteCategoryScore[site],site)
+        createBarChart(siteCategoryScore[site],site,file_name)
 
 
     return categoryScore

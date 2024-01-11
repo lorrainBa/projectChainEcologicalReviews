@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 import re
+import os
 
 def color_based_on_rating(rating):
     # Define a custom colormap from red to dark green
@@ -18,7 +19,7 @@ def color_based_on_rating(rating):
 
 
 
-def createBarChart(site_ratings,name):
+def createBarChart(site_ratings,name,file_name):
     name = re.sub(r'[0-9. ]', '', name)
     # Sort the sites based on ratings (from low to high)
     sorted_sites = sorted(site_ratings, key=site_ratings.get, reverse=False)
@@ -44,7 +45,7 @@ def createBarChart(site_ratings,name):
     plt.grid(axis='x', linestyle='--', alpha=0.6)
 
     # Save the image
-    plt.savefig('output/graph/'+name+'_scoreBarChart.png', bbox_inches='tight')
+    plt.savefig('output/graph/'+file_name+'/'+name+'_scoreBarChart.png', bbox_inches='tight')
 
     # Clear the figure for the next iteration
     plt.clf()
