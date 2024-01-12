@@ -9,7 +9,7 @@ def load_comments(file):
     with open(file, 'r', encoding='utf-8') as f:
         for line in f:
             lineSplitted = line.strip().split(": ")
-            if len(lineSplitted) == 1:
+            if len(lineSplitted) > 1:
                 site, comment = lineSplitted[0], lineSplitted[1]
                 if site not in restaurant:
                     restaurant[site] = []
