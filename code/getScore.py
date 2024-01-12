@@ -4,8 +4,8 @@ import os
 from scrapingTripadvisor import getDataFromRestaurant
 
 
-dataPath = "data/"
-getDataFromRestaurant()
+dataPath = "../data/"
+getDataFromRestaurant('https://www.tripadvisor.fr/Restaurant_Review-g60763-d424545-Reviews-Ellen_s_Stardust_Diner-New_York_City_New_York.html')
 #Get the folder to treat
 dossierATraiter = os.listdir(dataPath)
 # Filtrer les dossiers uniquement (ignorer les fichiers)

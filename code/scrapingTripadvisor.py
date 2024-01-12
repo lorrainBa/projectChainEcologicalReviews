@@ -117,7 +117,7 @@ def getDataFromRestaurant(restaurant_url):
     adverse_pattern = re.compile(r'\b(adverse|défavorable|greenwashing|écoblanchiment|misleading environmental marketing|marketing environnemental trompeur|pseudosustainable|pseudodurable)\b', flags=re.IGNORECASE)
 
     patterns = [organic_pattern, climate_pattern, water_pattern, social_pattern, governance_pattern, waste_pattern, adverse_pattern]
-    output_file_names = ['Organic.txt', 'Climate.txt', 'Water.txt', 'Social.txt', 'Governance.txt', 'Waste.txt', 'Adverse.txt']
+    output_file_names = ['organic.txt', 'climate.txt', 'water.txt', 'social.txt', 'governance.txt', 'waste.txt', 'adverse.txt']
 
     folder_path = '../../data/' + restaurant_title
 
@@ -125,6 +125,3 @@ def getDataFromRestaurant(restaurant_url):
         os.makedirs(folder_path)
 
     process_comments(comments_content, folder_path, patterns, output_file_names)
-
-if __name__ == "__main__":
-    getDataFromRestaurant('https://www.tripadvisor.fr/Restaurant_Review-g60763-d424545-Reviews-Ellen_s_Stardust_Diner-New_York_City_New_York.html')
