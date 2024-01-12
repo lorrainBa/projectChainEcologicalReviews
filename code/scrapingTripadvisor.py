@@ -2,6 +2,10 @@
 # coding: utf-8
 
 # In[4]:
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[4]:
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -38,7 +42,7 @@ def scrape_comments(driver, file):
     title_element = soup.find('h1', {'data-test-target': 'top-info-header'})
     restaurant_title = title_element.text.strip()
     
-    max_runtime_minutes = 1
+    max_runtime_minutes = 20
     start_time = time.time()
 
     while True:

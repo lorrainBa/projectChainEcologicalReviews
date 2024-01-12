@@ -59,7 +59,7 @@ def rate_global(dictionarryOfCategories,file_name):
                 siteCategoryScore[site][category] = site_rating
 
         # Calculate the category ratings
-        average_site_ratings = sum_site_ratings / (len(dictionarryOfCategories[category])+0.00001)
+        average_site_ratings = sum_site_ratings / (len(dictionarryOfCategories[category]) + 0.0001)
 
         categoryScore[category] = average_site_ratings
         finalScore += average_site_ratings
@@ -71,9 +71,9 @@ def rate_global(dictionarryOfCategories,file_name):
     print(categoryScore,"-___-")
 
     #Create folder for the output graph
-    if not os.path.exists("output/graph/"+file_name):
+    if not os.path.exists("./../output/graph/"+file_name):
         # Créez le dossier s'il n'existe pas
-        os.makedirs("output/graph/"+file_name)
+        os.makedirs("./../output/graph/"+file_name)
 
     createBarChart(categoryScore,"everyApp",file_name)
 
@@ -83,5 +83,4 @@ def rate_global(dictionarryOfCategories,file_name):
 
 
     return categoryScore
-
 
