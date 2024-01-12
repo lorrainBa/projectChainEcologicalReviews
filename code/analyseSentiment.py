@@ -59,7 +59,7 @@ def rate_global(dictionarryOfCategories,file_name):
                 siteCategoryScore[site][category] = site_rating
 
         # Calculate the category ratings
-        average_site_ratings = sum_site_ratings / len(dictionarryOfCategories[category])
+        average_site_ratings = sum_site_ratings / (len(dictionarryOfCategories[category])+0.00001)
 
         categoryScore[category] = average_site_ratings
         finalScore += average_site_ratings
