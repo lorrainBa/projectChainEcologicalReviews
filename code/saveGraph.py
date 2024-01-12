@@ -45,7 +45,7 @@ def createBarChart(site_ratings,name,file_name):
     plt.grid(axis='x', linestyle='--', alpha=0.6)
 
     # Save the image
-    plt.savefig('output/graph/'+file_name+'/'+name+'_scoreBarChart.png', bbox_inches='tight')
+    plt.savefig('./../output/graph/'+file_name+'/'+name+'_scoreBarChart.png', bbox_inches='tight')
 
     # Clear the figure for the next iteration
     plt.clf()
