@@ -119,7 +119,7 @@ def getDataFromRestaurant(restaurant_url):
     patterns = [organic_pattern, climate_pattern, water_pattern, social_pattern, governance_pattern, waste_pattern, adverse_pattern]
     output_file_names = ['organic.txt', 'climate.txt', 'water.txt', 'social.txt', 'governance.txt', 'waste.txt', 'adverse.txt']
 
-    folder_path = '../../data/' + restaurant_title
+    folder_path = '../data/' + restaurant_title
 
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
